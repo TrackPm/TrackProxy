@@ -1,0 +1,26 @@
+{
+  "name": "trackproxy",
+  "version": "1.0.0",
+  "description": "A load balancer writen in Node",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrackPm/TrackProxy.git"
+  },
+  "keywords": [
+    "web",
+    "server",
+    "load",
+    "balancer"
+  ],
+  "author": "Track.pm",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/TrackPm/TrackProxy/issues"
+  },
+  "homepage": "https://github.com/TrackPm/TrackProxy#readme"
+}
