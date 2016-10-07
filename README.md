@@ -1,4 +1,6 @@
 # TrackProxy
+![Build Status](https://ci.adamxp12.com/buildStatus/icon?job=trackproxy)
+
 THIS IS UNFINISHED CODE, WIP
 
 But soon it will be an awesome little load balancer with some very unique features, should be awesome
