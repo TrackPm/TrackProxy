@@ -16,17 +16,26 @@ var packagejson = require('./package.json'),
     httpProxy = require('http-proxy'),
     proxy = httpProxy.createProxyServer({});
 
-var port = 80;
+var port = 3000;
 
 // Proxy setup
 var server = http.createServer(function(req, res) {
     //TODO: Logic to pick server
-    proxy.web(req, res, { target: 'http://10.0.6.5:80' });
+
+    // If running in test mode then use servers created in mocha instead of defined servers
+    if(process.env.NODE_ENV !== 'test') {
+        proxy.web(req, res, { target: 'http://10.0.6.5:80' });
+    } else {
+        proxy.web(req, res, { target: 'http://127.0.0.1:4000' });
+    }
 });
 
 // Display console info
-console.log('');
-console.log('TrackProxy v'+packagejson.version);
-console.log('listening on port '+port);
-console.log('');
+// but not for mocha test
+if(process.env.NODE_ENV !== 'test') {
+    console.log('');
+    console.log('TrackProxy v'+packagejson.version);
+    console.log('listening on port '+port);
+    console.log('');
+}
 server.listen(port);
