@@ -1,5 +1,5 @@
 # TrackProxy
-![Build Status](https://ci.adamxp12.com/buildStatus/icon?job=trackproxy)
+[![Build Status](https://ci.adamxp12.com/job/trackproxy/badge/icon)](https://ci.adamxp12.com/job/trackproxy/)
 
 THIS IS UNFINISHED CODE, WIP
 
