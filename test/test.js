@@ -19,7 +19,7 @@ describe('server response', function () {
   
   it('should return 200', function (done) {
     var options = {
-        url: 'http://localhost:3000'
+        url: 'http://localhost:3001'
     };
     request.get(options, function (err, res, body) {
     expect(res.statusCode).to.equal(200);
