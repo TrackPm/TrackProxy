@@ -16,7 +16,7 @@ var packagejson = require('./package.json'),
     httpProxy = require('http-proxy'),
     proxy = httpProxy.createProxyServer({});
 
-var port = 3000;
+var port = 3001;
 
 // Proxy setup
 var server = http.createServer(function(req, res) {
@@ -24,11 +24,33 @@ var server = http.createServer(function(req, res) {
 
     // If running in test mode then use servers created in mocha instead of defined servers
     if(process.env.NODE_ENV !== 'test') {
-        proxy.web(req, res, { target: 'http://10.0.6.5:80' });
+        proxy.web(req, res, { target: 'http://127.0.0.1:3000' });        
     } else {
         proxy.web(req, res, { target: 'http://127.0.0.1:4000' });
     }
 });
+
+
+// 504 error handler
+// TODO: Figure out a way to try another server instead of just displaying an error
+// probably as simple as just doing proxy.web in this block, but need to be sure not to cause loops
+proxy.on('error', function (err, req, res) {
+  res.writeHead(504, {
+    'Content-Type': 'text/html'
+  });
+
+  res.end('<h1>ERROR 504 GATEWAY TIMEOUT</h1><hr><br>No servers can handle your request<br>Try again in 30 seconds, this error usually ocours if the is a high load on the website <br><br><code>Debug info<br>'+err+'<br>server removed to prevent a major disaster<br>will re-add if we get a heartbeat</code><br><br><h4>TrackProxy</h4>');
+});
+
+
+// Display no servers error if the are no servers to pick from
+// Would happen usually if all the servers are down and would be removed from the pool 
+function noserverfound(req, res) {
+    res.writeHead(503, {
+        'Content-Type': 'text/html'
+    });
+    res.end('<h1>ERROR 503 SERVICE UNAVAILABLE</h1><hr><br>No servers can handle your request<br>Try again in 30 seconds, this error usually ocours if the is a high load on the website <br><br><code>Debug info<br>No servers in proxy pool, no where to go<br>waiting for a backend server to be added</code><br><br><h4>TrackProxy</h4>');
+}
 
 // Display console info
 // but not for mocha test
