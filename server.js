@@ -56,6 +56,15 @@ function noserverfound(req, res) {
 // but not for mocha test
 if(process.env.NODE_ENV !== 'test') {
     console.log('');
+console.log('████████╗██████╗  █████╗  ██████╗██╗  ██╗           ██████╗ ███╗   ███╗');
+console.log('╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝           ██╔══██╗████╗ ████║');
+console.log('   ██║   ██████╔╝███████║██║     █████╔╝            ██████╔╝██╔████╔██║');
+console.log('   ██║   ██╔══██╗██╔══██║██║     ██╔═██╗            ██╔═══╝ ██║╚██╔╝██║');
+console.log('   ██║   ██║  ██║██║  ██║╚██████╗██║  ██╗    ██╗    ██║     ██║ ╚═╝ ██║');
+console.log('   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝    ╚═╝    ╚═╝     ╚═╝     ╚═╝');
+                                                                       
+
+
     console.log('TrackProxy v'+packagejson.version);
     console.log('listening on port '+port);
     console.log('');
